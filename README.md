@@ -1,0 +1,2 @@
+# generalprogrammingassignment1palindrome
+palindrome
