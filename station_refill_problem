@@ -1,0 +1,64 @@
+
+var distance1=prompt("Enter the distance d :","");
+var distance=parseInt(distance1);
+var stationDistance=[];
+var n=window.prompt("Enter the number of gas stations n","");
+var m=window.prompt("Enter the value of m (miles the car can travel on full tank");
+alert("Enter the n gas station distances in ascending order");
+for(var i=0;i<n;i++)
+{
+ stationDistance[i]=window.prompt("","");
+}
+stationDistance[n]=distance;
+stationDistance.sort(function(a, b){return a - b});
+var pos=stationDistance.indexOf(distance);
+
+var refill=0;
+var km=0;
+var curr=-1;
+var result="";
+while(km!=distance)
+{  var curr=parseInt(km)+parseInt(m);
+   stationDistance.push(curr);
+   stationDistance.sort(function(a, b){return a - b});
+   var index =stationDistance.lastIndexOf(curr);
+   if(index==0)
+   {
+       result="IMPOSSIBLE";
+       break;
+   }
+   if(index>=stationDistance.lastIndexOf(distance))
+   {
+       km=distance;
+   }
+
+   if((curr>=stationDistance[index-1]) && (curr<stationDistance[index+1]) )
+   {
+       refill+=1;
+       km=stationDistance[index-1];
+
+
+       if(parseInt(km)+parseInt(m)<stationDistance[index+1])
+       { result="IMPOSSIBLE";
+         break;}
+   }
+   else
+
+   if(curr==stationDistance[index+1])
+   {
+       km=stationDistance[index+1];
+       if(km!=distance)
+       {
+           refill+=1;
+       }
+
+
+
+   }
+
+}
+alert("Printing minimum  no of refills");
+if(result=="IMPOSSIBLE")
+alert(result);
+else
+alert(refill);
